@@ -8,11 +8,11 @@
         <q-card square bordered class="q-pa-lg shadow-1">
           <q-card-section>
             <q-form class="q-gutter-md">
-              <q-input square filled clearable v-model="cpf" type="cpf" label="CPF" @click="logar" />
+              <q-input square filled clearable v-model="cpf" type="cpf" label="CPF" />
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn unelevated color="light-blue-7" size="lg" class="full-width" label="Login" />
+            <q-btn unelevated color="light-blue-7" size="lg" class="full-width" label="Login"  @click="logar()"/>
           </q-card-actions>
         </q-card>
       </div>
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+/* eslint-disable */
+import { db } from "boot/firebase";
+
 export default {
   name: 'Auth',
   data () {
@@ -29,9 +32,23 @@ export default {
     }
   },
   methods: {
-    logar () {
-      console.log('Teste')
-    }
+    async logar () {
+      try {
+        this.$q.loading.show()
+        const query = await db.collection('vendedores').get();
+
+        query.forEach(element => {
+          let vendedor = {id: element.id, nome: element.data().nome, cpf: element.data().cpf}
+          if(this.cpf == vendedor.cpf){
+            this.$router.push('/dashboard')
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        this.$q.loading.hide()
+      }
+    },
   }
 }
 </script>
