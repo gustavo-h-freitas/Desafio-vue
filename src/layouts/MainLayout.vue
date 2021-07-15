@@ -48,6 +48,12 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
+    title: 'Dashboard',
+    caption: 'Tela de início',
+    icon: 'home',
+    link: '/'
+  },
+  {
     title: 'Produtos',
     caption: 'Cadastro, edição e exclusão',
     icon: 'add_box',
