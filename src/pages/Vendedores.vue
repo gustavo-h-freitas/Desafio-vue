@@ -4,7 +4,7 @@
     <h4 class="text-center">Vendedores</h4>
     <q-card class="my-card">
       <q-card-section class="bg-dark text-white">
-        <div class="text-h6">CADASTRAR UM NOVO VENDEDOR</div>
+        <div class="text-h6">{{titulo.card}}</div>
       </q-card-section>
 
       <q-separator></q-separator>
@@ -35,19 +35,20 @@
       <q-separator></q-separator>
       <div>
         <q-card-actions align="right">
-          <q-btn label="Cadastrar" type="submit" color="primary"/>
+          <q-btn :label="titulo.btn" type="submit" color="primary"/>
           <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" @click="onReset"/>
+          <q-btn label="Excluir" color="red" flat class="q-ml-sm" @click="deleteVendedor"/>
         </q-card-actions>
       </div>
     </q-form>
     </q-card>
-
     <div class="q-pt-md">
     <q-table
       title="Vendedores Cadastrados"
       :rows="vendedores"
       :columns="filds"
       row-key="name"
+      @row-click="selecionarVendedor"
     />
   </div>
   </q-page>
@@ -70,6 +71,10 @@ export default {
         { name: 'nome', align: 'center', label: 'Nome do Vendedor', field: 'nome', sortable: true },
         { name: 'cpf', align: 'center', label: 'CPF', field: 'cpf', sortable: true },
       ],
+      titulo: {
+        card: 'Cadastrar um Novo Vendedor',
+        btn: 'Cadastrar'
+      }
     }
   },
   methods: {
@@ -77,9 +82,11 @@ export default {
       try {
         this.$q.loading.show()
         const query = await db.collection('vendedores').get();
+        this.vendedores = []
+
         query.forEach(element => {
           let vendedor = {id: element.id, nome: element.data().nome, cpf: element.data().cpf}
-          this.vendedors.push(vendedor);
+          this.vendedores.push(vendedor);
         });
       } catch (err) {
         console.log(err);
@@ -90,20 +97,22 @@ export default {
     async cadastrar () {
       try {
         this.$q.loading.show()
-        const query = await db.collection('vendedores').add({
-          nome: this.vendedor.nome,
-          cpf: this.vendedor.cpf
+        if(this.vendedor.id){
+          await db.collection('vendedores').doc(this.vendedor.id).update({
+            nome: this.vendedor.nome,
+            cpf: this.vendedor.cpf
+          })
+        }else{
+          const query = await db.collection('vendedores').add({
+           nome: this.vendedor.nome,
+            cpf: this.vendedor.cpf
         })
-        this.vendedores.push({
-          nome: this.vendedor.nome,
-          cpf: this.vendedor.cpf,
-          id: query.id
-        })
+        }
 
         this.onReset()
 
         this.$q.notify({
-          message: 'Vendedor Cadastrado!',
+          message: 'Ação realizada com sucesso!',
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done'
@@ -119,11 +128,52 @@ export default {
         this.$q.loading.hide()
       }
     },
+    selecionarVendedor(evt, row){
+      this.vendedor = {...row}
+      this.titulo.card = "Editar vendedor Selecionado"
+      this.titulo.btn = "Salvar Alterações"
+    },
+    deleteVendedor(){
+      if(this.vendedor.id){
+this.$q.dialog({
+    title: 'ATENÇÃO!',
+    message: 'Deseja remover o Vendedor?',
+    cancel: true,
+    persistent: true
+  }).onOk(async () => {
+    try {
+      this.$q.loading.show()
+      const query = await db.collection('vendedores').doc(this.vendedor.id).delete()
+      this.onReset()    
+    } catch (error) {
+      this.$q.notify({
+        message: error,
+        color: 'red',
+        textColor: 'white',
+        icon: 'clear'
+      })
+    } finally {
+      this.$q.loading.hide()
+    }
+    })
+  }else{
+     this.$q.notify({
+      message: "Selecione um Vendedor!",
+      color: 'red',
+      textColor: 'white',
+      icon: 'clear'
+    })
+  }
+    },
     onReset(){
       this.vendedor = {
         nome: '',
         cpf: null
       }
+      this.titulo.card = "Cadastrar um Novo Vendedor"
+      this.titulo.btn = "Cadastrar"
+
+      this.getVendedores()
     }
   },
   created(){
