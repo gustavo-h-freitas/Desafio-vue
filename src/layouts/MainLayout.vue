@@ -51,31 +51,37 @@ const linksList = [
     title: 'Dashboard',
     caption: 'Tela de início',
     icon: 'home',
-    link: '/'
+    link: '/dashboard'
   },
   {
     title: 'Produtos',
     caption: 'Cadastro, edição e exclusão',
     icon: 'add_box',
-    link: '/produtos'
+    link: '/dashboard/produtos'
   },
   {
     title: 'Vendedores',
     caption: 'Cadastro, edição e exclusão',
     icon: 'group',
-    link: '/vendedores'
+    link: '/dashboard/vendedores'
   },
   {
     title: 'Relatórios',
     caption: '',
     icon: 'pie_chart',
-    link: '/relatorios'
+    link: '/dashboard/relatorios'
+  },
+  {
+    title: 'Loja',
+    caption: 'Local para vendas',
+    icon: 'store_mall_directory',
+    link: '/dashboard/loja'
   },
   {
     title: 'Logout',
-    caption: '',
+    caption: 'No momento redireciona para a tela que seria de Login*',
     icon: 'arrow_back',
-    link: '#'
+    link: '/'
   }
 ]
 
