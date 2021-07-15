@@ -1,32 +1,26 @@
-# Desafio-vue
-### Este desafio é para medir o seu nível de conhecimento e organização de código tratando-se de um projeto em Vue.js
+# sig-vendas (sig-vendas)
 
-### Instruções para o desafio
+sistema de gerenciamento de produtos e vendedores.
 
-- **Fork** esse repositório e faça o desafio numa branch com o seu nome (exemplo: `nome-sobrenome`);
-- Assim que concluir o seu desafio, abra um **pull request** com suas alterações.
+## Install the dependencies
+```bash
+npm install
+```
 
-### Desafio
-- Desenvolver uma aplicação web responsável pelo gerenciamento de vendas de um mercado
-- Visão de Gerente
-  - Adicionar, editar, excluir e visualizar a mercadoria
-  - Total de vendas _(com informações sobre cada venda)_
-  - Gráfico de vendas por dia
-  - Vendas por vendedor _(valor total e mercadoria vendida)_
-- Visão de Vendedor
-  - Visualizar mercadoria
-  - Cancelar e fazer venda de mercadoria (Uma venda tem medicamentos, quantidades, um vendedor responsável e o valor)
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
+```
 
-### Escopo do Desafio
-- Documentar as funcionalidades feitas
-- Desafio *deve* ser feito em Quasar com Vue.js
-- Não é necessário submeter uma aplicação que cumpra cada um dos requisitos descritos, mas o que for submetido deve funcionar
-- Criar um arquivo INSTRUCTIONS.md o passo a passo para rodar o projeto e com a descrição das funcionalidades
+### Lint the files
+```bash
+npm run lint
+```
 
-### Avaliação do desafio
-- O código será avaliado em relação a manutenabilidade, organização (de pastas e código), componentização, limpeza e clareza do código e o resultado final.
-- Faça um fork do repositório e depois mande uma pull request para cá
+### Build the app for production
+```bash
+quasar build
+```
 
-Qualquer dúvida pode mandar um e-mail para business.gustavo.freitas@gmail.com
-
-## *Boa sorte*
+### Customize the configuration
+See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
