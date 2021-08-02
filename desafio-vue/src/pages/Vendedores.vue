@@ -1,9 +1,9 @@
 <template>
 <!-- /* eslint-disable */ -->
   <q-page padding>
-    <h4 class="text-center">Vendedores</h4>
-    <q-card class="my-card">
-      <q-card-section class="bg-dark text-white">
+    <h4 class="text-center q-ma-md">Vendedores</h4>
+    <q-card class="my-card" style="max-width: 100%">
+      <q-card-section class="bg-orange-6 text-white">
         <div class="text-h6">{{titulo.card}}</div>
       </q-card-section>
 
@@ -35,7 +35,7 @@
       <q-separator></q-separator>
       <div>
         <q-card-actions align="right">
-          <q-btn :label="titulo.btn" type="submit" color="primary"/>
+          <q-btn :label="titulo.btn" type="submit" color="orange-10"/>
           <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" @click="onReset"/>
           <q-btn label="Excluir" color="red" flat class="q-ml-sm" @click="deleteVendedor"/>
         </q-card-actions>

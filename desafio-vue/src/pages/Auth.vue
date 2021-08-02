@@ -12,7 +12,7 @@
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn unelevated color="light-blue-7" size="lg" class="full-width" label="Login"  @click="logar()"/>
+            <q-btn unelevated color="light-blue-9" size="lg" class="full-width" label="Login"  @click="logar()"/>
           </q-card-actions>
         </q-card>
       </div>
@@ -55,7 +55,7 @@ export default {
 
 <style scoped>
 .conteiner {
-  background: url('assets/img/auth/bg.jpg') no-repeat center #eeecef70;/* #ccc cover center;*/
+  background: url('assets/img/auth/doutor.png') no-repeat left #eeecef70;/* #ccc cover center;*/
 }
 
 .q-card {

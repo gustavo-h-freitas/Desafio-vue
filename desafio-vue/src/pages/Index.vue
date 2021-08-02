@@ -3,7 +3,7 @@
     <img
       alt="Quasar logo"
       src="~assets/leadbase-logo.png"
-      style="width: 170px; height: 50px"
+      style="width: 200px; height: 70px"
     >
   </q-page>
 </template>

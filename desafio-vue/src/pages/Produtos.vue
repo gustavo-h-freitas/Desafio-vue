@@ -1,48 +1,48 @@
 <template>
 <!-- /* eslint-disable */ -->
-  <q-page padding>
-    <h4 class="text-center">Produtos</h4>
-    <q-card class="my-card">
-      <q-card-section class="bg-primary text-white">
-        <div class="text-h6">{{titulo.card}}</div>
+  <q-page>
+    <h4 class="text-center q-ma-md">Produtos</h4>
+    <q-card class="my-card" style="max-width: 100%">
+      <q-card-section class="bg-orange-6 text-white">
+        <div class="text-h5">{{titulo.card}}</div>
       </q-card-section>
 
       <q-separator></q-separator>
-       <q-form
-      @submit="cadastrar"
-      @reset="onReset"
-      class="q-gutter-md"
-    >
-      <q-input
-        filled
-        v-model="produto.nome"
-        label="Nome do Produto *"
-        hint="Nome do Produto"
-        lazy-rules
-        :rules="[ val => val !== null && val !== '' || 'Por favor informe o nome do Produto']"
-      />
+      <q-form
+        @submit="cadastrar"
+        @reset="onReset"
+        class="q-gutter-md"
+      >
+        <q-input
+          filled
+          v-model="produto.nome"
+          label="Nome do Produto *"
+          hint="Nome do Produto"
+          lazy-rules
+          :rules="[ val => val !== null && val !== '' || 'Por favor informe o nome do Produto']"
+        />
 
-      <q-input
-        filled
-        type="number"
-        v-model="produto.valor"
-        label="Preço do Produto *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'Infoeme um Preço.',
-          val => val > 0 && val < 1000000 || 'Informe um valor válido!'
-        ]"
-      />
+        <q-input
+          filled
+          type="number"
+          v-model="produto.valor"
+          label="Preço do Produto *"
+          lazy-rules
+          :rules="[
+            val => val !== null && val !== '' || 'Infoeme um Preço.',
+            val => val > 0 && val < 1000000 || 'Informe um valor válido!'
+          ]"
+        />
 
-      <q-separator></q-separator>
-      <div>
-        <q-card-actions align="right">
-          <q-btn :label="titulo.card" type="submit" color="primary"/>
-          <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" @click="onReset"/>
-          <q-btn label="Excluir" color="red" flat class="q-ml-sm" @click="deleteProduto"/>
-        </q-card-actions>
-      </div>
-    </q-form>
+        <q-separator></q-separator>
+        <div>
+          <q-card-actions align="right">
+            <q-btn :label="titulo.card" type="submit" color="orange-10"/>
+            <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" @click="onReset"/>
+            <q-btn label="Excluir" color="red" flat class="q-ml-sm" @click="deleteProduto"/>
+          </q-card-actions>
+        </div>
+      </q-form>
     </q-card>
 
     <div class="q-pt-md">
