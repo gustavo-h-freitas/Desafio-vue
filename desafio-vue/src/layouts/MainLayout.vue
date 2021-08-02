@@ -1,31 +1,17 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar style="width: 100%">
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
 
-        <div class="row">
-          <q-btn
-            flat
-            dense
-            round
-            icon="menu"
-            aria-label="Menu"
-            @click="toggleLeftDrawer"
-          />
-
-          <div class="row items-center">SIG VENDAS v0.1</div>
-
-        </div>
-
-        <div class="row q-ma-lg">
-          <div class="justify-end">
-            <img
-              src="../assets/leadbase.png"
-              alt="logo leadbase"
-              style="height: 30px;"
-            >
-          </div>
-        </div>
+        <div>SIG VENDAS v0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -121,5 +107,3 @@ export default defineComponent({
   }
 })
 </script>
-
-

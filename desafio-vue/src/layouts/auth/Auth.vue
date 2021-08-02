@@ -5,7 +5,7 @@
     </q-page-container>
   </q-layout>
 </template>
-
+'
 <script>
 import { defineComponent } from 'vue'
 
